@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- No network: the page may not fetch, beacon, open sockets or submit forms anywhere. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; manifest-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Pause Before Pay — check a suspicious message, on your device</title>
+  <meta name="description" content="Paste a suspicious SMS, email or DM (English or Japanese). Get a calm explanation of red flags, link tricks and what to do instead — entirely on your device.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wrap top-row">
+      <div>
+        <h1 id="t-title">Pause Before Pay</h1>
+        <p id="t-tagline" class="tagline">Got a message that wants money, a code, or a click? Paste it here first.</p>
+      </div>
+      <button id="lang-btn" type="button" class="ghost" lang="ja">日本語</button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <p id="privacy" class="privacy" role="note"><span aria-hidden="true">🔒</span> <span id="t-privacy"></span></p>
+
+    <section class="card" aria-labelledby="t-paste-label">
+      <label id="t-paste-label" for="msg" class="big-label">Paste the suspicious message</label>
+      <textarea id="msg" rows="8" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+      <p id="msg-error" class="error" role="alert" hidden></p>
+      <div class="row">
+        <button id="check-btn" type="button" class="primary">Check this message</button>
+        <button id="clear-btn" type="button" class="ghost">Clear</button>
+      </div>
+      <div class="samples">
+        <label id="t-sample-label" for="sample-select">Or try a synthetic example</label>
+        <div class="row">
+          <select id="sample-select"></select>
+          <button id="load-btn" type="button" class="ghost">Load example</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="t-results" hidden tabindex="-1">
+      <h2 id="t-results">What we found</h2>
+      <div id="verdict" class="verdict" role="status" aria-live="polite"></div>
+
+      <div class="grid">
+        <section class="card" aria-labelledby="t-signals">
+          <h3 id="t-signals">Red flags in the text</h3>
+          <ul id="signal-list" class="signal-list"></ul>
+        </section>
+        <section class="card" aria-labelledby="t-links">
+          <h3 id="t-links">Links (never opened)</h3>
+          <p id="t-links-note" class="muted small"></p>
+          <ul id="link-list" class="link-list"></ul>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="t-highlight">
+        <h3 id="t-highlight">Your message, with red flags highlighted</h3>
+        <div id="highlight" class="highlight"></div>
+      </section>
+
+      <section class="card steps-card" aria-labelledby="t-steps">
+        <h3 id="t-steps">What to do instead</h3>
+        <ol id="steps" class="steps"></ol>
+        <h4 id="t-report">Where to report</h4>
+        <div class="row">
+          <label id="t-region" for="region">I am in</label>
+          <select id="region"></select>
+        </div>
+        <ul id="report-list" class="report-list"></ul>
+      </section>
+
+      <section class="card" aria-labelledby="t-uncertainty">
+        <h3 id="t-uncertainty">What this check cannot tell you</h3>
+        <ul id="uncertainty" class="uncertainty"></ul>
+      </section>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p id="t-limits" class="small"></p>
+    <p id="t-data" class="small"></p>
+    <p class="small"><a id="t-source" href="https://github.com/Class-now/pause-before-pay" rel="noopener noreferrer">Source code</a> · MIT · Built for SafeSpace Hacks 2026 with help from Claude Code (AI).</p>
+  </footer>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
