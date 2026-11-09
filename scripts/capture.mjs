@@ -74,7 +74,10 @@ ok((await page.locator("#steps li").count()) >= 4, "Japanese advice steps render
   await tp.click("#load-btn");
   const finding = await tp.locator("#link-list > li ul li").first().textContent();
   const linkShown = await tp.locator("#link-list > li > code").first().textContent();
-  await tp.setContent(`<!doctype html><html><body style="margin:0;width:1200px;height:800px;background:#1f5f4f;font-family:'Segoe UI',system-ui,sans-serif;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 80px;box-sizing:border-box">
+  await tp.close();
+  const poster = await ctx.newPage();
+  await poster.setViewportSize({ width: 1200, height: 800 });
+  await poster.setContent(`<!doctype html><html><body style="margin:0;width:1200px;height:800px;background:#1f5f4f;font-family:'Segoe UI',system-ui,sans-serif;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 80px;box-sizing:border-box">
     <div style="font-size:30px;opacity:.9;letter-spacing:.04em">SAFESPACE HACKS 2026</div>
     <div style="font-size:92px;font-weight:800;line-height:1.05;margin:10px 0 8px">Pause Before Pay</div>
     <div style="font-size:34px;opacity:.95;margin-bottom:34px">Paste a suspicious message. See the red flags. On your device.</div>
@@ -84,8 +87,8 @@ ok((await page.locator("#steps li").count()) >= 4, "Japanese advice steps render
       <div style="font-size:25px;line-height:1.4">${finding}</div>
       <div style="font-size:22px;margin-top:14px;color:#4c5752">Signals, not a verdict · English &amp; 日本語 · connect-src 'none'</div>
     </div></body></html>`);
-  await tp.screenshot({ path: "submission/thumbnail.png" });
-  await tp.close();
+  await poster.screenshot({ path: "submission/thumbnail.png" });
+  await poster.close();
 }
 
 // Keyboard: Tab to the textarea and use Ctrl+Enter

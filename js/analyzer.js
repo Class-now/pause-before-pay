@@ -300,7 +300,7 @@ export function analyzeLink(raw, display = null) {
       const hit = brandForToken(tok);
       if (!hit || seen.has(hit.brand.id)) continue;
       seen.add(hit.brand.id);
-      findings.push({ id: hit.exact ? "brandindomain" : "lookalike", weight: hit.exact ? 4 : 5, brand: hit.brand.name, detail: reg });
+      findings.push({ id: hit.exact ? "brandindomain" : "lookalike", weight: hit.exact ? 4 : 5, brand: hit.brand.name, detail: uReg !== reg ? `${uReg} = ${reg}` : reg });
     }
     // Brand names placed in subdomains (e.g. amazon.co.jp.account-check.top)
     for (const lab of subLabels) {
